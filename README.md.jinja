@@ -1,0 +1,35 @@
+# {{project_name}}
+This is based on a devenv template from https://github.com/jerivl/copier-templates. Refer to the installation proceedure given there.
+
+The answers that were given to the original copier questionaire to configure this directory can be found in `_copier_conf.answers_file`
+---
+{%- if literate == "True" %}
+# Literate Programming Workflow
+This project is configured as a literate program. We use [entangled.py](https://entangled.github.io/), an editor-agnostic tool to handle tangling and synchronizing output files. `entangled-cli` should be included in `pyproject.toml` if the above installation steps were properly followed. 
+
+Due to a [current issue with the template](https://github.com/jerivl/copier-templates/issues/1), I enable `entangled watch` manually in a separate shell instance any time I am working on this project. This will ensure that any saved changes are correctly synchonized between the tangled outputs and the literate config in this file. Devenv related configs are intentionally omitted.
+
+---
+# Files
+I personally prefer to organize my literate programs by the file tree listing, adding each file under the proper directory subheading. An example of the entangled.py markdown syntax for declaring code outputs is here:
+## ./
+```{.python file=hello.py}
+{%- if python in languages %}
+import numpy as np
+{% endif %}
+def main():
+  print("Hello from devenv!")
+  <<snippet>>
+
+ if __name__ == "__main__":
+  main()
+```
+```{.python #snippet}
+{%- if python in languages %}
+print("As you can see, C bindings are correct, because numpy works:")
+print("a =", a := np.array([1, 2, 3]))
+print("mean(a) =", a.mean())
+{% endif %}
+print("Wow!")
+```
+{% endif %}
