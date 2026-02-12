@@ -1,0 +1,11 @@
+[project]
+name = "nix-python-devenv"
+version = "0.1.0"
+description = "Example project with working C bindings! yee"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.1.2",
+    {%- if literate == "True" %}
+    "entangled-cli >= 2.0"
+    {%- endif %}
+]

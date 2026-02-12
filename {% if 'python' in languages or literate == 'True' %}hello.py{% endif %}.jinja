@@ -1,0 +1,16 @@
+{%- if 'python' in languages %}
+import numpy as np
+{% endif %}
+def main():
+  {%- if literate == 'True' %}
+  print("Run `entangled watch` to sync changes as a literate program")
+  {% endif %}
+  {%- if 'python' in languages %}
+  print("As you can see, C bindings are correct, because numpy works:")
+  print("a =", a := np.array([1, 2, 3]))
+  print("mean(a) =", a.mean())
+  {% endif %}
+  print("Wow!")
+
+if __name__ == "__main__":
+  main()
