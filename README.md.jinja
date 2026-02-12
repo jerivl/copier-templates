@@ -14,18 +14,18 @@ Due to a [current issue with the template](https://github.com/jerivl/copier-temp
 I personally prefer to organize my literate programs by the file tree listing, adding each file under the proper directory subheading. An example of the entangled.py markdown syntax for declaring code outputs is here:
 ## ./
 ```{.python file=hello.py}
-{%- if python in languages %}
+{%- if 'python' in languages %}
 import numpy as np
 {% endif %}
 def main():
   print("Hello from devenv!")
   <<snippet>>
 
- if __name__ == "__main__":
+if __name__ == "__main__":
   main()
 ```
 ```{.python #snippet}
-{%- if python in languages %}
+{%- if 'python' in languages %}
 print("As you can see, C bindings are correct, because numpy works:")
 print("a =", a := np.array([1, 2, 3]))
 print("mean(a) =", a.mean())

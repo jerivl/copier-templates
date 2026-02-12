@@ -1,6 +1,6 @@
 { pkgs, lib, config, inputs, ... }:
 let
-  {%- if python in languages or literate %}
+  {%- if 'python' in languages or literate %}
   buildInputs = with pkgs; [
     stdenv.cc.cc
     libuv
@@ -21,7 +21,7 @@ in
 
   {# Python should build C and has support for CUDA through: #}
   {# https://github.com/clementpoiret/nix-python-devenv #}
-  {%- if python in languages or literate %}
+  {%- if 'python' in languages or literate %}
   env = {
     LD_LIBRARY_PATH = "${lib.makeLibraryPath buildInputs}";
   };
@@ -41,7 +41,7 @@ in
   
   scripts.hello.exec = ''
     echo hello from $GREET
-    {%- if python or literate %}
+    {%- if 'python' in languages or literate %}
     uv run python hello.py
     {%- endif%} 
   '';
@@ -59,7 +59,7 @@ in
 
   # https://devenv.sh/basics/
   enterShell = ''
-    {%- if python or literate %}
+    {%- if 'python' in languages or literate %}
     . .devenv/state/venv/bin/activate
     {%- endif%} 
     hello         # Run scripts directly
