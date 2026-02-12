@@ -1,0 +1,48 @@
+# questions
+project_name:
+    type: str
+    help: "Name: What is the name of your project?"
+    default: "new-project"
+application:
+    type: str
+    help: "Application: What kind of app is {{project_name}}?\nSelect one or more:"
+    default: []
+    choices:
+        - art
+        - infra
+        - library
+        - web
+    multiselect: true
+# TODO: conditional questions based on application
+# art: modality? (select multi) math writing video music graphics
+# infra: deployment env? (select 1) embedded cloud baremetal
+# web: web frameworks? (select 1) htmx ihp svelte base
+languages:
+    type: str
+    help: "Languages: What languages are going to be used in {{project_name}}?\n Select one or more:"
+    default: []
+    choices:
+        - nix
+        - python
+    multiselect: true
+vcs:
+    type: str
+    help: "VCS: Should we colocate jujutsu (jj) or only use git for version control?"
+    default: jj
+    choices:
+        - jj
+        - git
+dir-emacs:
+    type: str
+    help: "Directory Emacs: Should we create a new local development environment based on emacs?"
+    default: true
+    choices:
+        - true
+        - false
+literate:
+    type: str
+    help: "Literate: Should {{project_name}} have its literate config within the repo's root?"
+    default: false
+    choices:
+        - false
+        - true
