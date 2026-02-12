@@ -5,7 +5,7 @@ project_name:
     default: "new-project"
 application:
     type: str
-    help: "Application: What kind of app is {{project_name}}?\nSelect one or more:"
+    help: "Application: What kind of app is {{project_name}}?"
     default: []
     choices:
         - art
@@ -19,7 +19,7 @@ application:
 # web: web frameworks? (select 1) htmx ihp svelte base
 languages:
     type: str
-    help: "Languages: What languages are going to be used in {{project_name}}?\n Select one or more:"
+    help: "Languages: What languages are going to be used in {{project_name}}?"
     default: []
     choices:
         - nix
@@ -41,7 +41,7 @@ dir-emacs:
         - false
 literate:
     type: str
-    help: "Literate: Should {{project_name}} have its literate config within the repo's root?"
+    help: "Literate: Should {{project_name}} have its literate config within the directory's root?"
     default: false
     choices:
         - false
