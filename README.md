@@ -11,7 +11,7 @@ I tend to deploy the same scaffolding over and over even across languages, with 
 ## Quick Start
 Use Copier to clone this repo.
 ```bash
-copier copy git@github.com:jerivl/copier-templates.git <destination>
+copier copy https://github.com/jerivl/copier-templates <destination>
 ```
 After the questionaire, you will be prompted on entering the directory to allow a new direnv profile with `direnv allow`. 
 ```bash

@@ -17,6 +17,9 @@ in
     {%- if vcs == "jj" %}
     jujutsu
     {%- endif %}
+    {%- if ide == "vscode" %}
+    (vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]))
+    {%- endif %}
   ];
 
   {# Python should build C and has support for CUDA through: #}
