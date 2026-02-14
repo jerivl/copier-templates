@@ -35,7 +35,7 @@ vcs:
 ide:
     type: str
     help: "IDE: Should we create a new local development environment?"
-    default: 'no'
+    default: no
     choices:
         - vscode
         - emacs
