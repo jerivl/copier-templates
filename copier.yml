@@ -5,45 +5,59 @@ project_name:
     default: "new-project"
 application:
     type: str
-    help: "Application: What kind of app is {{project_name}}?"
+    help: "Application: Will {{project_name}} have any of the following aspects?"
     default: []
     choices:
-        - art
-        - infra
-        - library
-        - web
+        - writing
+        - calculus
+        - infrastructure
+        - web-development
+        - shell-scripts
+        - serialized-data
     multiselect: true
-# TODO: conditional questions based on application
-# art: modality? (select multi) math writing video music graphics
-# infra: deployment env? (select 1) embedded cloud baremetal
-# web: web frameworks? (select 1) htmx ihp svelte base
 languages:
     type: str
-    help: "Languages: What languages are going to be used in {{project_name}}?"
+    help: "Languages: What technologies are going to be used in {{project_name}}?"
     default: []
     choices:
         - nix
         - python
     multiselect: true
+dbs:
+    type: str
+    help: "Databases: What technologies are going to be used in {{project_name}}?"
+    default: []
+    choices:
+        - sqlite
+        - duckdb
+    multiselect: true
 vcs:
     type: str
-    help: "VCS: Should we colocate jujutsu (jj) or only use git for version control?"
+    help: "VCS: Will you primarily use jujutsu (jj) or git for version control?"
     default: jj
     choices:
         - jj
         - git
-ide:
+commit_helpers:
     type: str
-    help: "IDE: Should we create a new local development environment?"
-    default: no
+    help: "Commits: Use any of the following generators for commit messages?"
+    default: none
     choices:
-        - vscode
-        - emacs
-        - no
+        - none
+        - cocogitto
+        - cocogitto+koji
+        - cocogitto+koji+aicommit2
+emacs:
+    type: str
+    help: "Emacs: Create new local development environment"
+    default: true
+    choices:
+        - true
+        - false
 literate:
     type: str
-    help: "Literate: Should {{project_name}} have its literate config within the directory's root?"
-    default: false
+    help: "Literate: Should we create ./README.md as a literate config for {{project_name}}?"
+    default: true
     choices:
-        - false
         - true
+        - false
