@@ -20,7 +20,6 @@ languages:
     help: "Languages: What technologies are going to be used in {{project_name}}?"
     default: []
     choices:
-        - nix
         - python
     multiselect: true
 dbs:

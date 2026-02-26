@@ -54,7 +54,7 @@ let
     pnpmDeps = pkgs.fetchPnpmDeps {
       inherit (finalAttrs) pname version src;
       fetcherVersion = 3;
-      hash = "sha256-96/qySx4dKfVCoIgwKXv6c7B3AG0S1HbLxt86/y/qTw=";
+      hash = "sha256-Yb0zczxetZ/O64suykJHziidkFxdhMntQcCq1jOuK6Q=";
     };
   
     nativeBuildInputs = [
@@ -121,13 +121,26 @@ let
     config = emacs-config;
     defaultInitFile = true;
     package = pkgs.emacs-nox;
-    extraEmacsPackages = epkgs: [
+    extraEmacsPackages = epkgs: (with epkgs; [
+      {%- if 'python' in languages %}
+      elpy # development environment + autocomplete
+      ein # ipython notebooks
+      uv-mode
+      pydoc
+      python-pytest # pytest
+      # jedi # autocomplete
+      lazy-ruff # linting
+      lsp-pyright # type checker
+      {% endif %}
+    ])
+    ++ [
       {%- if vcs == 'jj' %}
       emacs-majutsu
       {% endif %}
     ];
   };
   {% endif %}
+  splitString = s: builtins.filter (x: x != "") (builtins.split "\\n" s);
 in 
 {
   env.GREET = "{{project_name}}";
@@ -150,6 +163,21 @@ in
     koji
     aicommit2
     {% endif %}
+    {%- if 'python' in languages %}
+    ruff # linting
+    refurb # readability linter
+    pyupgrade # update old python conventions
+    pylint # bug and style checker
+    
+    pyright # type checking
+    #mypy
+    zuban # Mypy-compatible Python Language Server built in Rust
+    isort
+    
+    #peplum: TUI PEP lookup manager https://github.com/davep/peplum
+    #euphorie: Jupyter notebooks in the terminal with kitty graphics compat https://github.com/joouha/euporie
+    #dhv: Python AST disassembly from creater of textual_astview https://github.com/davep/dhv
+    {% endif %}
   ]
   {%- if emacs == 'True' %}
   ++ [ emacs-configured ]
@@ -169,6 +197,7 @@ in
       enable = true;
       sync = {
         enable = true;
+
       };
     };
   };

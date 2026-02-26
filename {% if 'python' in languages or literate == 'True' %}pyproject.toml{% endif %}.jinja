@@ -6,6 +6,16 @@ requires-python = ">=3.11"
 dependencies = [
     "numpy>=2.1.2",
     {%- if literate == "True" %}
-    "entangled-cli >= 2.0"
+    "entangled-cli >= 2.0",
     {%- endif %}
+      {%- if 'python' in languages %} 
+      "pydantic",
+      "pytest", # testing framework
+      "flake8", # Modular source code checker: pep8, pyflakes and co
+      "python-lsp-server", # Python implementation of the Language Server Protocol
+      "python-lsp-ruff", # Ruff linting plugin for pylsp
+    #  "pylsp-rope", # Extended refactoring capabilities for Python LSP Server using Rope
+      "pylsp-mypy", # Mypy plugin for the Python LSP Server
+      {% endif %}
+    
 ]
